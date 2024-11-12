@@ -1,5 +1,5 @@
 """
-This module is used for creating X amount of "Corretores Imobiliaria" with verification code via e-mail.
+This module is used for creating X amount of "Corretores Autonomos" with verification code via e-mail.
 """
 
 import os
@@ -15,14 +15,15 @@ from selenium.webdriver.common.keys import Keys
 
 from dotenv import load_dotenv
 
-path_to_add = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+path_to_add = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(path_to_add)
 
 from Utils.addres import create_address
 from Utils.person import (
     create_phone,
     create_random_first_name,
-    create_cnpj
+    create_random_surname,
+    create_cpf
 )
 
 load_dotenv()
@@ -105,8 +106,8 @@ continue_btn4.click()
 
 hint = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.hRoNaF')))
 
-real_state_opt = driver.find_element(By.ID, 'imobiliaria')
-real_state_opt.click()
+autonomos_opt = driver.find_element(By.ID, 'corretor')
+autonomos_opt.click()
 
 both_opt = driver.find_element(By.ID, 'ambos')
 both_opt.click()
@@ -120,11 +121,14 @@ hint2 = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.dbFlzE')
 # id_code = driver.find_element(By.ID, 'code')
 # id_code.send_keys()
 
-social_reason_input = driver.find_element(By.ID, 'socialReason')
-social_reason_input.send_keys(create_random_first_name())
+name_input = driver.find_element(By.ID, 'name')
+name_input.send_keys(create_random_first_name())
 
-cnpj_input = driver.find_element(By.ID, 'cnpj')
-cnpj_input.send_keys(create_cnpj())
+surname_input = driver.find_element(By.ID, 'lastName')
+surname_input.send_keys(create_random_surname())
+
+cpf_input = driver.find_element(By.ID, 'cpf')
+cpf_input.send_keys(create_cpf())
 
 creci_input = driver.find_element(By.ID, 'creci')
 creci_input.send_keys(random.randint(111111,999999))
@@ -158,7 +162,7 @@ center_opt = driver.find_element(By.XPATH, '/html/body/main/section/div/div[2]/d
 center_opt.click() 
 regions_select.click()
 
-neighborhood_select = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.gNNpzQ')))
+neighborhood_select = driver.find_element(By.CSS_SELECTOR, '.gNNpzQ')
 neighborhood_select.click()
 
 neighborhood_modal = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.fLYZAl')))
