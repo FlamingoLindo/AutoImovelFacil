@@ -12,7 +12,13 @@ from selenium.webdriver.common.keys import Keys
 from dotenv import load_dotenv
 
 def master_login(driver, wait):
+    """
+    Logs into the master page using the provided Selenium WebDriver and WebDriverWait.
 
+    Args:
+        driver (webdriver): The Selenium WebDriver instance for controlling the browser.
+        wait (WebDriverWait): The WebDriverWait instance to wait for elements to load.
+    """
     driver.get(os.getenv('MASTER'))
 
     # Waits for the email input to load

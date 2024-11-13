@@ -56,6 +56,7 @@ for section in range(1, 3):  # Loop over section 1 and section 2
         file_input.send_keys(upload_file)
         file_count += 1
         
+        
 save_btn = driver.find_element(By.CSS_SELECTOR, '.lpopcn')
 save_btn.click()
 
