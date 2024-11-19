@@ -57,7 +57,7 @@ while True:
             success_modal = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'.dngoxP')))
             close_btn = driver.find_element(By.CSS_SELECTOR, '.bRJSlQ')
             close_btn.click()
-    
+   
     # Check if there are more pages and navigate to the next page
     next_page_button = driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div/div[2]/div[2]/nav/ul/li[4]/button')
     
